@@ -20,3 +20,12 @@ variable "jenkinversion" {
 variable "jenkinservice" {
   default="NodePort"
 }
+variable "node_pool_name"{
+ default="autoscale-worker-pool"
+}
+variable "min_node"{
+  default=1
+}
+variable "max_nodes"{
+default=5
+}

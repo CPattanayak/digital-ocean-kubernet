@@ -4,11 +4,11 @@ resource "digitalocean_kubernetes_cluster" "sample-cluster" {
   version = var.kubeversion
 
   node_pool {
-    name       = "autoscale-worker-pool"
+    name       = var.node_pool_name
     size       = var.kubesize
     auto_scale = true
-    min_nodes  = 1
-    max_nodes  = 5
+    min_nodes  = var.min_node
+    max_nodes  = var.max_nodes
   }
 }
 
@@ -51,4 +51,16 @@ resource "helm_release" "jenkins" {
     name  = "master.csrf.defaultCrumbIssuer.enabled"
     value = "false"
   }
+}
+
+resource "helm_release" "nginx-ingress" {
+  name  = "nginx-ingress"
+  chart = "stable/nginx-ingress"
+
+  set {
+    name  = "controller.publishService.enabled"
+    value = "true"
+  }
+
+ 
 }
