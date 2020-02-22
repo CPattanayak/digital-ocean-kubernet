@@ -18,7 +18,7 @@ variable "jenkinversion" {
   default="latest"
 }
 variable "jenkinservice" {
-  default="NodePort"
+  default="ClusterIP"
 }
 variable "node_pool_name"{
  default="autoscale-worker-pool"
@@ -28,4 +28,10 @@ variable "min_node"{
 }
 variable "max_nodes"{
 default=5
+}
+variable "ingress_enable"{
+default=true
+}
+variable "host_name"{
+default="build.pattacpro.co.in"
 }

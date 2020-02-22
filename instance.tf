@@ -51,6 +51,15 @@ resource "helm_release" "jenkins" {
     name  = "master.csrf.defaultCrumbIssuer.enabled"
     value = "false"
   }
+  set {
+    name ="master.ingress.enabled"
+	value=var.ingress_enable
+  }
+  set{
+    name="master.ingress.hostName"
+	value=var.host_name
+  }
+ 
 }
 
 resource "helm_release" "nginx-ingress" {
@@ -64,3 +73,7 @@ resource "helm_release" "nginx-ingress" {
 
  
 }
+
+
+
+
