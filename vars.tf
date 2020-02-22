@@ -11,5 +11,12 @@ variable "kubeversion" {
  default="1.16.6-do.0"
 }
 variable "kubesize" {
-  default="s-2vcpu-2gb"
+  default="s-6vcpu-16gb"
+}
+
+variable "jenkinversion" {
+  default="latest"
+}
+variable "jenkinservice" {
+  default="NodePort"
 }
