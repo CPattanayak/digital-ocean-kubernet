@@ -4,7 +4,7 @@
 #
 #cd provission_cluster
 export token=''
-export domen_name='pattacpro.co.in'
+export domen_name=''
 
 export NGNX_LOAD_BALANCER_IP=`kubectl get services nginx-ingress-controller --output jsonpath='{.status.loadBalancer.ingress[0].ip}'`
 cd provission_domain

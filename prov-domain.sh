@@ -4,7 +4,7 @@
 #
 #cd provission_cluster
 export token=''
-export domen_name='pattacpro.co.in'
+export domen_name=''
 cd provission_cluster
 terraform init
 terraform apply -auto-approve -var do_token=$token -var host_name=build.$domen_name
