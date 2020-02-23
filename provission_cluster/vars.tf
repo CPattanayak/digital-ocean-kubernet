@@ -1,5 +1,5 @@
 variable "do_token" {
-  default=""
+ 
 }
 variable "region" {
   default="blr1"

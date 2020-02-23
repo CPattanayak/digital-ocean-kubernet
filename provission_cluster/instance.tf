@@ -23,12 +23,10 @@ provider "kubernetes" {
 
 provider "helm" {
   kubernetes {
-     host  = digitalocean_kubernetes_cluster.sample-cluster.endpoint
+  host  = digitalocean_kubernetes_cluster.sample-cluster.endpoint
   token = digitalocean_kubernetes_cluster.sample-cluster.kube_config[0].token
-  cluster_ca_certificate = base64decode(
-    digitalocean_kubernetes_cluster.sample-cluster.kube_config[0].cluster_ca_certificate
-  )
-  }
+  insecure = true
+ }
 }
 data "helm_repository" "stable" {
   name = "stable"
