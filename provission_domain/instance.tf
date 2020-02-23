@@ -1,5 +1,5 @@
 resource "digitalocean_domain" "default" {
-  name = "pattacpro.co.in"
+  name = var.domain_name
 }
 
 

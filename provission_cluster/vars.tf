@@ -33,5 +33,4 @@ variable "ingress_enable"{
 default=true
 }
 variable "host_name"{
-default="build.pattacpro.co.in"
 }
