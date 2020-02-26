@@ -35,7 +35,7 @@ resource "digitalocean_droplet" "replicaset" {
 	}
    
     destination = "/var/admin.js"
-    content  = "${templatefile("${path.module}/templates/admin.tmpl", {})}"
+    content  = "${templatefile("${path.module}/templates/admin.tmpl", {pass=var.pass})}"
   }
 
   provisioner "remote-exec" {
