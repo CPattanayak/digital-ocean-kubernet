@@ -25,6 +25,18 @@ resource "digitalocean_droplet" "replicaset" {
     destination = "/etc/mongod.conf"
     content  = "${templatefile("${path.module}/templates/config.tmpl", {})}"
   }
+ provisioner "file" {
+	  connection {
+	    host = self.ipv4_address
+		type = "ssh"
+		user = "root"
+		agent = true
+		private_key = file("./mykey")
+	}
+   
+    destination = "/var/admin.js"
+    content  = "${templatefile("${path.module}/templates/admin.tmpl", {})}"
+  }
 
   provisioner "remote-exec" {
      connection {
@@ -42,6 +54,7 @@ resource "digitalocean_droplet" "replicaset" {
       "apt-get install -y -o Dpkg::Options::=--force-confdef mongodb-org",
 	  "ufw allow 27017",
       "service mongod start",
+	  
     ]
   }
 }
