@@ -6,17 +6,24 @@
 export token=''
 export reponame='my-repo'
 export repodescription='my-repo'
+export springdependancies='web,actuator'
+export starterAppName='MyRepoApp'
+export groupid='com.starter.project'
+export githubuser='CPattanayak'
+
 cd provision_github
 terraform init
-terraform apply -auto-approve -var do_token=$token -var reponame=$reponame -var description=$repodescription
+terraform apply -auto-approve -var do_token=$token -var reponame=$reponame -var description=$repodescription -var githubuser=$githubuser
 
-curl https://start.spring.io/starter.tgz -d groupId=com.starter.project -d artifactId=$reponame name=DemoApp -d javaVersion=1.8 bootVersion=2.1.0.RELEASE -d dependencies=web,actuator -d language=java -d type=maven-project -d baseDir=$reponame | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d groupId=$groupid -d artifactId=$reponame name=$starterAppName -d javaVersion=1.8 bootVersion=2.1.0.RELEASE -d dependencies=$springdependancies -d language=java -d type=maven-project -d baseDir=$reponame | tar -xzvf -
 
 cd $reponame
-echo $reponame >> README.md
+echo $repodescription >> README.md
 git init
-git add README.md
+git add .
 git commit -m "first commit"
 git branch -M main
-git remote add origin https://github.com/CPattanayak/$reponame.git
+git remote add origin https://github.com/$githubuser/$reponame.git
 git push -u origin main
+cd ..
+rm -rf $reponame
